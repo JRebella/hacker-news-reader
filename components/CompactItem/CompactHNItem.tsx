@@ -1,6 +1,6 @@
 import { Skeleton } from "@mui/material";
 import { JobItem, PollItem, StoryItem } from "../../api/hackerNews";
-import { useHNItem } from "./useHNItem";
+import { useHNItem } from "../../hooks/useHNItem";
 import styles from "./_compactHNItem.module.scss";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import URLParser from "url-parse";
@@ -13,23 +13,27 @@ type Props = {
   itemId: number;
 };
 
-const CompactHNItem = ({ itemId }: Props) => {
+export const CompactHNItemSkeleton = () => {
+  return (
+    <div className={styles.container}>
+      <div className={styles["score-column"]}>
+        <Skeleton variant="rectangular" height="100%" width="80%" />
+      </div>
+      <div className={styles["text-column"]}>
+        <Skeleton width={600} />
+        <Skeleton width="30%" />
+      </div>
+    </div>
+  );
+};
+
+export const CompactHNItem = ({ itemId }: Props) => {
   const { isLoading, itemData } = useHNItem<StoryItem | JobItem | PollItem>(itemId);
 
   const { push } = useRouter();
 
   if (isLoading || !itemData) {
-    return (
-      <div className={styles.container}>
-        <div className={styles["score-column"]}>
-          <Skeleton variant="rectangular" height="100%" width="80%" />
-        </div>
-        <div className={styles["text-column"]}>
-          <Skeleton width={600} />
-          <Skeleton width="30%" />
-        </div>
-      </div>
-    );
+    return <CompactHNItemSkeleton />;
   }
 
   const onClickTitle = () => {
@@ -37,7 +41,7 @@ const CompactHNItem = ({ itemId }: Props) => {
     if (url) {
       window.open(url, "_blank");
     } else {
-      push(`/item?id=${itemData.id}`);
+      push(`/item/${itemData.id}`);
     }
   };
 
@@ -66,8 +70,12 @@ const CompactHNItem = ({ itemId }: Props) => {
           <a href={`https://news.ycombinator.com/user?id=${itemData.by}`} target="_blank" rel="noreferrer">
             {itemData.by}
           </a>{" "}
-          {itemData.type !== "job" && itemData.descendants > 0 && (
-            <a href={`https://news.ycombinator.com/user?id=${itemData.by}`} target="_blank" rel="noreferrer">
+          {itemData.type !== "job" && (
+            <a
+              onClick={() => {
+                push(`/item/${itemData.id}`);
+              }}
+            >
               | {itemData.descendants} comments
             </a>
           )}{" "}
@@ -77,5 +85,3 @@ const CompactHNItem = ({ itemId }: Props) => {
     </div>
   );
 };
-
-export default CompactHNItem;

@@ -1,5 +1,8 @@
+import { Button, ButtonGroup } from "@mui/material";
+import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
 import React, { ReactNode } from "react";
+import { StoryCategory } from "../../api/hackerNews";
 import styles from "./_styles.module.scss";
 
 type Props = {
@@ -26,10 +29,57 @@ const Layout = ({ children, title }: Props) => {
 };
 
 const Header = () => {
+  const {
+    push,
+    query: { category },
+  } = useRouter();
+
+  const onChangeCategory = (category?: StoryCategory) => () => {
+    if (!category) {
+      push({
+        pathname: "/",
+      });
+    } else {
+      push({
+        pathname: "/",
+        query: { category },
+      });
+    }
+  };
+
   return (
     <header className={`${styles.header}`}>
       <span className={styles["app-title"]}>Hacker News</span>
-      <span className={styles["username"]}>Built with Next.js/React</span>
+
+      <div>
+        <ButtonGroup variant="outlined" aria-label="outlined button group">
+          <Button onClick={onChangeCategory()} variant={!category ? "contained" : undefined}>
+            Top
+          </Button>
+          <Button onClick={onChangeCategory("new")} variant={category === "new" ? "contained" : undefined}>
+            New
+          </Button>
+          <Button onClick={onChangeCategory("ask")} variant={category === "ask" ? "contained" : undefined}>
+            Ask
+          </Button>
+          <Button onClick={onChangeCategory("best")} variant={category === "best" ? "contained" : undefined}>
+            Best
+          </Button>
+          <Button onClick={onChangeCategory("job")} variant={category === "job" ? "contained" : undefined}>
+            Job
+          </Button>
+          <Button onClick={onChangeCategory("show")} variant={category === "show" ? "contained" : undefined}>
+            Show
+          </Button>
+        </ButtonGroup>
+      </div>
+
+      <span className={styles["username"]}>
+        By Juan Rebella -{" "}
+        <a target="_blank" rel="noreferrer" href="https://github.com/JRebella">
+          JRebella
+        </a>
+      </span>
     </header>
   );
 };

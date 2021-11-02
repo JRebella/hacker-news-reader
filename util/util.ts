@@ -9,3 +9,8 @@ export const getTimeDifference = (time: Moment): string => {
 
   return `${moment().diff(time, "day")} days ago`;
 };
+
+// Just like a Record<Key,value> but not all keys need to be present and {} is valid
+export type PartialRecord<K extends keyof any, T> = {
+  [P in K]?: T;
+};

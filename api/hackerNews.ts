@@ -21,8 +21,11 @@ interface BaseItem {
 export interface StoryItem extends BaseItem {
   type: "story";
   title: string;
-  url: string;
   score: number;
+
+  // Stories can either have an external URL link or a simple text
+  text?: string;
+  url?: string;
 
   kids: number[];
   descendants: number;
