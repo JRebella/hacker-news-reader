@@ -33,9 +33,20 @@
 $body-top-margin: 48px;
 $body-bottom-margin: 0;
 
-$body-side-margin: 48px;
+$body-side-margin-large: 48px;
+$body-side-margin-small: 12px;
 $body-side-padding: 0;
 
+@mixin large-vp {
+  @media (min-width: 960px) {
+    @content;
+  }
+}
+@mixin small-vp {
+  @media (max-width: 959px) {
+    @content;
+  }
+}
 .body {
   display: flex;
   flex-direction: column;
@@ -45,11 +56,17 @@ $body-side-padding: 0;
   padding-right: $body-side-padding;
   padding-left: $body-side-padding;
 
-  margin-right: $body-side-margin;
-  margin-left: $body-side-margin;
-
   margin-bottom: $body-bottom-margin;
   margin-top: $body-top-margin;
+
+  @include large-vp {
+    margin-right: $body-side-margin-large;
+    margin-left: $body-side-margin-large;
+  }
+  @include small-vp {
+    margin-right: $body-side-margin-small;
+    margin-left: $body-side-margin-small;
+  }
 }
 
 .spinner {

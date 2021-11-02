@@ -1,7 +1,6 @@
-import React, { ReactNode, useContext } from "react";
 import Head from "next/head";
+import React, { ReactNode } from "react";
 import styles from "./_styles.module.scss";
-import { AuthContext } from "../../context/AuthContext";
 
 type Props = {
   children?: ReactNode;
@@ -9,7 +8,6 @@ type Props = {
 };
 
 const Layout = ({ children, title }: Props) => {
-  const { isLoading } = useContext(AuthContext);
   return (
     <div className={styles["app-layout"]}>
       <Head>
@@ -18,7 +16,7 @@ const Layout = ({ children, title }: Props) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Header />
-      <div className={styles.body}>{isLoading ? "Loading @TODO" : children}</div>
+      <div className={styles.body}>{children}</div>
 
       <footer className={styles.footer}>
         By Juan Rebella - <a href="https://github.com/JRebella">https://github.com/JRebella</a>
@@ -28,11 +26,10 @@ const Layout = ({ children, title }: Props) => {
 };
 
 const Header = () => {
-  const { userDetails } = useContext(AuthContext);
   return (
     <header className={`${styles.header}`}>
       <span className={styles["app-title"]}>Hacker News</span>
-      <span className={styles["username"]}>Welcome, {userDetails?.username}</span>
+      <span className={styles["username"]}>Built with Next.js/React</span>
     </header>
   );
 };
