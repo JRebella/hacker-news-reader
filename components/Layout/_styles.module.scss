@@ -30,10 +30,10 @@
   }
 }
 
-$body-top-margin: 0;
+$body-top-margin: 48px;
 $body-bottom-margin: 0;
 
-$body-side-margin: 0;
+$body-side-margin: 48px;
 $body-side-padding: 0;
 
 .body {
@@ -54,4 +54,13 @@ $body-side-padding: 0;
 
 .spinner {
   margin: auto;
+}
+
+.footer {
+  padding: 8px;
+  background-color: #f6f6f6;
+
+  a {
+    text-decoration: underline;
+  }
 }

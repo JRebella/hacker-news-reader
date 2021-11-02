@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       </Head>
       <AuthProvider>
-        <Layout title="Title @TODO">
+        <Layout title="Hacker News Reader By Juan Rebella">
           <link rel="stylesheet" href="https://use.typekit.net/sgw3rmg.css"></link>
           <Component {...pageProps} />
         </Layout>

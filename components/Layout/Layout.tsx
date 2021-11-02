@@ -19,6 +19,10 @@ const Layout = ({ children, title }: Props) => {
       </Head>
       <Header />
       <div className={styles.body}>{isLoading ? "Loading @TODO" : children}</div>
+
+      <footer className={styles.footer}>
+        By Juan Rebella - <a href="https://github.com/JRebella">https://github.com/JRebella</a>
+      </footer>
     </div>
   );
 };
@@ -27,7 +31,7 @@ const Header = () => {
   const { userDetails } = useContext(AuthContext);
   return (
     <header className={`${styles.header}`}>
-      <span className={styles["app-title"]}>Title</span>
+      <span className={styles["app-title"]}>Hacker News</span>
       <span className={styles["username"]}>Welcome, {userDetails?.username}</span>
     </header>
   );
