@@ -1,0 +1,57 @@
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 100vh;
+  height: 100vh;
+}
+
+.header {
+  width: 100%;
+  z-index: 1;
+  height: 64px;
+  padding: 0 48px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: black;
+  color: white;
+
+  .app-title {
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+  }
+
+  .username {
+    font-size: 12px;
+  }
+}
+
+$body-top-margin: 0;
+$body-bottom-margin: 0;
+
+$body-side-margin: 0;
+$body-side-padding: 0;
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  flex-grow: 1;
+
+  padding-right: $body-side-padding;
+  padding-left: $body-side-padding;
+
+  margin-right: $body-side-margin;
+  margin-left: $body-side-margin;
+
+  margin-bottom: $body-bottom-margin;
+  margin-top: $body-top-margin;
+}
+
+.spinner {
+  margin: auto;
+}
