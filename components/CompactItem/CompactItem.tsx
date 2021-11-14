@@ -37,14 +37,7 @@ export const CompactHNItem = ({ itemId }: Props) => {
     return <CompactHNItemSkeleton />;
   }
 
-  const onClickTitle = () => {
-    const url = get(itemData, "url");
-    if (url) {
-      window.open(url, "_blank");
-    } else {
-      push(`/item/${itemData.id}`);
-    }
-  };
+  const onClickTitle = () => push(`/item/${itemData.id}`);
 
   return (
     <div className={`${styles.container} ${styles.loaded}`}>
