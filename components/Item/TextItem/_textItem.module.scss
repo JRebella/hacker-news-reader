@@ -1,0 +1,14 @@
+.container {
+  width: 100%;
+  padding: 0 64px;
+  flex-grow: 1;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+
+  .score {
+    margin-right: 4px;
+  }
+}

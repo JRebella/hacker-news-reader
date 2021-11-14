@@ -2,8 +2,7 @@ import { ArrowUpward } from "@mui/icons-material";
 import { Button, ButtonGroup } from "@mui/material";
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
-import React, { ReactNode } from "react";
-import { useState, useEffect } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { StoryCategory } from "../../api/hackerNews";
 import styles from "./_styles.module.scss";
 
@@ -83,8 +82,18 @@ const Header = () => {
   };
 
   return (
-    <header className={`${styles.header}`}>
-      <span className={styles["app-title"]}>Hacker News</span>
+    <header className={`${styles.header} ${styles["desktop-header"]}`}>
+      <Button
+        className={styles["app-title"]}
+        onClick={() => {
+          push({
+            pathname: "/",
+          });
+        }}
+        variant="text"
+      >
+        Hacker News
+      </Button>
 
       <div>
         <ButtonGroup variant="outlined" aria-label="outlined button group">

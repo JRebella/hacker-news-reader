@@ -1,4 +1,4 @@
-import { CompactHNItem, CompactHNItemSkeleton } from "../CompactItem/CompactHNItem";
+import { CompactHNItem, CompactHNItemSkeleton } from "../CompactItem/CompactItem";
 import styles from "./_itemGrid.module.scss";
 
 type Props = {
