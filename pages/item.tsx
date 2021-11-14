@@ -12,7 +12,7 @@ const ItemPage: NextPage = () => {
 
   const itemId = parseInt(id as string);
 
-  const { isLoading, itemData } = useHNItem<StoryItem | JobItem | PollItem>(itemId);
+  const { isLoading, data: itemData } = useHNItem<StoryItem | JobItem | PollItem>(itemId);
 
   if (isLoading || !itemData) {
     return <ItemPageSkeleton />;

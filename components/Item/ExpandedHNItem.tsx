@@ -1,11 +1,9 @@
 import { Skeleton } from "@mui/material";
-import moment from "moment";
 import { CommentItem, HNItem, JobItem, PollItem, PollOptionItem, StoryItem } from "../../api/hackerNews";
-import { getTimeDifference } from "../../util/util";
 import styles from "./_expandedHNItem.module.scss";
 
 type Props = {
-  itemData: HNItem | null;
+  itemData?: HNItem;
 };
 
 export const HNItemSkeleton = () => {

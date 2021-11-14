@@ -1,30 +1,10 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { getHNItem, HNItem } from "../api/hackerNews";
 
-// Small hook to fetch and keep track of a Hacker News item
+const HN_ITEM_QUERY_FRESH_TIME_IN_MILLISECONDS = 20 * 60 * 1000; // 20 minutes
 
-export type UseHNItem = <ExpectedItemIdType extends HNItem = HNItem>(
-  itemId: number,
-  isReady?: boolean
-) => {
-  itemData: ExpectedItemIdType | null;
-  isLoading: boolean;
-};
-
-export const useHNItem: UseHNItem = <ItemType extends HNItem>(itemId: number, isReady?: boolean) => {
-  const [itemData, setItemData] = useState<ItemType | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    if (isReady === false) return;
-    getHNItem(itemId).then((item) => {
-      setItemData(item as ItemType);
-      setIsLoading(false);
-    });
-  }, [isReady]);
-
-  return {
-    itemData,
-    isLoading,
-  };
+export const useHNItem = <ItemType extends HNItem>(itemId: number, isReady?: boolean) => {
+  return useQuery<ItemType, Error>("" + itemId + (isReady ? "r" : ""), () => getHNItem<ItemType>(itemId), {
+    staleTime: HN_ITEM_QUERY_FRESH_TIME_IN_MILLISECONDS, // 20 minutes
+  });
 };
