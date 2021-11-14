@@ -12,21 +12,25 @@ const TextItem = ({ itemData }: { itemData: JobItem | StoryItem }) => {
         {itemData.title}
       </h1>
       {itemData.text && <div dangerouslySetInnerHTML={{ __html: itemData.text }} />}
+      {itemData.url && !itemData.text && <iframe className={styles["external-frame"]} src={itemData.url} />}
       <a href={itemData.url} target="_blank" rel="noreferrer">
         {itemData.url}
       </a>
-      <br />
-      By{" "}
-      <a href={`https://news.ycombinator.com/user?id=${itemData.by}`} target="_blank" rel="noreferrer">
-        {itemData.by}
-      </a>
-      <hr />
-      <h5>Comments</h5>
-      {itemData.type === "story"
-        ? itemData.kids?.map((kidId, index) => {
-            return <CommentKid itemId={kidId} key={index} depth={0} />;
-          })
-        : null}
+      <div className={styles["user-footer"]}>
+        By{" "}
+        <a href={`https://news.ycombinator.com/user?id=${itemData.by}`} target="_blank" rel="noreferrer">
+          {itemData.by}
+        </a>
+      </div>
+
+      <div className={styles.comments}>
+        <h5>Comments</h5>
+        {itemData.type === "story"
+          ? itemData.kids?.map((kidId, index) => {
+              return <CommentKid itemId={kidId} key={index} depth={0} />;
+            })
+          : null}
+      </div>
     </div>
   );
 };
