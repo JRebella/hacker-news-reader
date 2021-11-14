@@ -1,13 +1,14 @@
 import { Skeleton } from "@mui/material";
 import { JobItem, PollItem, StoryItem } from "../../api/hackerNews";
 import { useHNItem } from "../../hooks/useHNItem";
-import styles from "./_compactHNItem.module.scss";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import URLParser from "url-parse";
 import { useRouter } from "next/dist/client/router";
 import { get } from "lodash";
 import moment from "moment";
 import { getTimeDifference } from "../../util/util";
+
+import styles from "./_compactItem.module.scss";
 
 type Props = {
   itemId: number;

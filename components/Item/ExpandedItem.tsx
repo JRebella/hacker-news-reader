@@ -1,6 +1,7 @@
 import { Skeleton } from "@mui/material";
-import { CommentItem, HNItem, JobItem, PollItem, PollOptionItem, StoryItem } from "../../api/hackerNews";
-import styles from "./_expandedHNItem.module.scss";
+import { CommentItem, HNItem, PollItem, PollOptionItem } from "../../api/hackerNews";
+import TextItem from "./TextItem/TextItem";
+import styles from "./_expandedItem.module.scss";
 
 type Props = {
   itemData?: HNItem;
@@ -33,22 +34,6 @@ export const ExpandedHNItem = ({ itemData }: Props) => {
     case "pollopt":
       return <PollOption itemData={itemData} />;
   }
-};
-
-// @TODO use an HTML purifier to clean the incoming data before using dangerouslySetInnerHTML
-const TextItem = ({ itemData }: { itemData: JobItem | StoryItem }) => {
-  return (
-    <div>
-      <h1>{itemData.title}</h1>
-      <h5>By {itemData.by}</h5>
-
-      {itemData.text && <div dangerouslySetInnerHTML={{ __html: itemData.text }} />}
-
-      <a href={itemData.url} target="_blank" rel="noreferrer">
-        {itemData.url}
-      </a>
-    </div>
-  );
 };
 
 //@TODO

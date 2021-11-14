@@ -27,7 +27,7 @@ export interface StoryItem extends BaseItem {
   text?: string;
   url?: string;
 
-  kids: number[];
+  kids?: number[];
   descendants: number;
 }
 

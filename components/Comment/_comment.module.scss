@@ -1,0 +1,42 @@
+.container {
+}
+
+.header {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+
+  &.collapsed {
+    color: lightgray;
+  }
+}
+
+.body {
+  overflow: hidden;
+
+  &.collapsed {
+    height: 0;
+  }
+}
+
+.content {
+}
+
+.kids {
+}
+
+.expand-button {
+  padding: 0;
+  border-radius: 0;
+
+  font-size: 14px;
+  font-weight: bold;
+
+  color: black;
+
+  margin-right: 4px;
+
+  .collapsed & {
+    color: lightgray;
+  }
+}

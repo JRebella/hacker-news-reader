@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/dist/client/router";
 import { JobItem, PollItem, StoryItem } from "../../api/hackerNews";
-import { ExpandedHNItem } from "../../components/Item/ExpandedHNItem";
+import { ExpandedHNItem } from "../../components/Item/ExpandedItem";
 import { useHNItem } from "../../hooks/useHNItem";
 import styles from "../../styles/Item.module.scss";
 
@@ -17,9 +17,7 @@ const ItemPage: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.body}>
-        <ExpandedHNItem itemData={itemData} />
-      </div>
+      <ExpandedHNItem itemData={itemData} />
     </div>
   );
 };

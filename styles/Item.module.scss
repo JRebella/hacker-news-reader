@@ -1,12 +1,21 @@
 .container {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 
   align-items: center;
   justify-content: flex-start;
-}
 
-.body {
-  max-width: 600px;
-  width: 100%;
+  margin-bottom: 128px;
+
+  background-color: #fafafa;
+
+  a {
+    color: #348ad9;
+    text-decoration: underline;
+
+    &:hover {
+      color: #00529d;
+    }
+  }
 }
