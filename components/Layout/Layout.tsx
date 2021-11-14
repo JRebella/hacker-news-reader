@@ -95,7 +95,7 @@ const Header = () => {
         Hacker News
       </Button>
 
-      <div>
+      <div className={styles["navigation-buttons"]}>
         <ButtonGroup variant="outlined" aria-label="outlined button group">
           <Button onClick={onChangeCategory()} variant={!category ? "contained" : undefined}>
             Top
