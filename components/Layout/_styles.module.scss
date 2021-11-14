@@ -101,3 +101,9 @@ $body-side-padding: 0;
     cursor: unset;
   }
 }
+
+.navigation-buttons {
+  @include small-vp {
+    display: none;
+  }
+}
