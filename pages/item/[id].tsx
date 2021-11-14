@@ -13,7 +13,7 @@ const ItemPage: NextPage = () => {
 
   const itemId = parseInt(id as string);
 
-  const { itemData } = useHNItem<StoryItem | JobItem | PollItem>(itemId, isReady);
+  const { data: itemData } = useHNItem<StoryItem | JobItem | PollItem>(itemId, isReady);
 
   return (
     <div className={styles.container}>

@@ -1,7 +1,9 @@
+import { ArrowUpward } from "@mui/icons-material";
 import { Button, ButtonGroup } from "@mui/material";
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
 import React, { ReactNode } from "react";
+import { useState, useEffect } from "react";
 import { StoryCategory } from "../../api/hackerNews";
 import styles from "./_styles.module.scss";
 
@@ -10,7 +12,31 @@ type Props = {
   title?: string;
 };
 
+const SCROLL_TO_TOP_HEIGHT_IN_PX = 250;
+
 const Layout = ({ children, title }: Props) => {
+  const [showScrollToTop, setShowScrollToTop] = useState<boolean>(false);
+
+  const onScrollEvent = () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+
+    if (winScroll > SCROLL_TO_TOP_HEIGHT_IN_PX) {
+      setShowScrollToTop(true);
+    } else {
+      setShowScrollToTop(false);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", onScrollEvent);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className={styles["app-layout"]}>
       <Head>
@@ -19,7 +45,16 @@ const Layout = ({ children, title }: Props) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Header />
-      <div className={styles.body}>{children}</div>
+      <div className={styles.body}>
+        {children}
+        <Button
+          onClick={() => showScrollToTop && scrollToTop()}
+          variant="contained"
+          className={`${styles["scroll-to-top"]} ${showScrollToTop ? "" : styles.hidden}`}
+        >
+          <ArrowUpward />
+        </Button>
+      </div>
 
       <footer className={styles.footer}>
         By Juan Rebella - <a href="https://github.com/JRebella">https://github.com/JRebella</a>

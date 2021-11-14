@@ -28,7 +28,7 @@ export const CompactHNItemSkeleton = () => {
 };
 
 export const CompactHNItem = ({ itemId }: Props) => {
-  const { isLoading, itemData } = useHNItem<StoryItem | JobItem | PollItem>(itemId);
+  const { isLoading, data: itemData } = useHNItem<StoryItem | JobItem | PollItem>(itemId);
 
   const { push } = useRouter();
 

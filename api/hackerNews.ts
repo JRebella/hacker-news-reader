@@ -71,6 +71,6 @@ export const getStoryIds = (category: StoryCategory): Promise<number[]> => {
   return fetch(ROUTES.GET_STORIES(category)).then((response) => response.json?.());
 };
 
-export const getHNItem = (itemId: number): Promise<HNItem> => {
+export const getHNItem = <ItemType extends HNItem>(itemId: number): Promise<ItemType> => {
   return fetch(ROUTES.GET_ITEM(itemId)).then((response) => response.json?.());
 };
